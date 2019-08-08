@@ -40,6 +40,12 @@ code {
   display: flex;
 }
 
+@media (max-width: 730px) {
+  .slide {
+    flex-direction: column;
+  }
+}
+
 .leftSide {
   width: 50%;
   display: flex;
