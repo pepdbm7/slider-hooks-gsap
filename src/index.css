@@ -20,7 +20,6 @@ code {
 
   min-height: 100vh;
   background: #333;
-  color: whitesmoke;
 }
 
 /* Slideshow container */
@@ -32,9 +31,9 @@ code {
 
 /* Slides */
 .mySlides {
-  /* display: none; */
   display: flex;
   flex-direction: column;
+  width: 80vw;
 }
 
 .slide {
@@ -42,19 +41,19 @@ code {
 }
 
 .leftSide {
+  width: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50%;
   padding: 80px;
   text-align: center;
 }
 
 .rightSide {
-  width: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 /* Next & previous buttons */
