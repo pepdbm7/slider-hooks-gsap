@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Kid from "../img/kid.jpg";
 import Rocks from "../img/rocks.jpg";
 import Dogs from "../img/dogs.jpg";
 import Sunset from "../img/sunset.jpg";
+import { TweenMax, Back } from "gsap";
 
 const Slider = () => {
   const [index, setIndex] = useState(1);
@@ -30,23 +31,49 @@ const Slider = () => {
 
   const length = slides.length - 1;
 
+  useEffect(() => animate(), []);
+
   const handleNext = () => {
     console.log("next");
     index === length ? setIndex(0) : setIndex(index + 1);
+    animate();
+  };
+
+  const animate = () => {
+    TweenMax.from("img", 0.5, {
+      scale: 0.5,
+      opacity: 0,
+      y: -150,
+      ease: Back.easeOut,
+      delay: 0.4
+    });
+    TweenMax.from("q", 1, {
+      opacity: 0,
+      x: -150,
+      ease: Back.easeInOut,
+      delay: 0.4
+    });
+    TweenMax.staggerFrom(
+      ".dot",
+      0,
+      { scale: 0.5, opacity: 0, delay: 1.3, ease: Back.easeOut },
+      0.2
+    );
   };
 
   const handlePrevious = () => {
     console.log("previous");
 
     index === 0 ? setIndex(length) : setIndex(index - 1);
+    animate();
   };
 
   const { quote, imgUrl } = slides[index];
 
-
   const currentSlide = i => {
-    setIndex(i)
-  }
+    setIndex(i);
+    animate();
+  };
 
   return (
     <React.Fragment>
@@ -76,11 +103,11 @@ const Slider = () => {
       {/* Dots/bullets/indicators */}
       <div class="dot-container">
         {slides.map((_, i) => {
-          if(i === index) {
-            return <span class="dot active" onClick={() => currentSlide(i)} />
+          if (i === index) {
+            return <span class="dot active" onClick={() => currentSlide(i)} />;
           }
-          return <span class="dot" onClick={() => currentSlide(i)} />
-          })}
+          return <span class="dot" onClick={() => currentSlide(i)} />;
+        })}
       </div>
     </React.Fragment>
   );
