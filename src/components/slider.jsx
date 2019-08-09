@@ -5,6 +5,8 @@ import Dogs from "../img/dogs.jpg";
 import Sunset from "../img/sunset.jpg";
 import { TweenMax, Back } from "gsap";
 
+import useIntersection from "./use_intersection_observer";
+
 const Slider = () => {
   const [index, setIndex] = useState(1);
 
@@ -57,7 +59,7 @@ const Slider = () => {
       ".dot",
       0,
       { scale: 0.5, opacity: 0, delay: 1.3, ease: Back.easeOut },
-      0.2
+      0.1
     );
   };
 
@@ -80,14 +82,12 @@ const Slider = () => {
       {/* Slideshow container */}
       <div class="slideshow-container">
         {/* Full-width slides/quotes */}
-        <div class="mySlides">
-          <div className="slide">
-            <div className="leftSide">
-              <q>{quote}</q>
-            </div>
-            <div className="rightSide">
-              <img src={`${imgUrl}`} alt="img1" />
-            </div>
+        <div className="slide">
+          <div className="leftSide">
+            <q>{quote}</q>
+          </div>
+          <div className="rightSide">
+            <img src={`${imgUrl}`} alt="img1" />
           </div>
         </div>
 
