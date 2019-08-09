@@ -19,6 +19,7 @@ code {
   justify-content: center;
 
   min-height: 100vh;
+  overflow: hidden;
   background: #333;
 }
 
@@ -88,6 +89,7 @@ code {
 
 .title-container h1 {
   font-size: 6vw;
+  margin: 0 35px;
   font-weight: 200;
   color: white;
 }
@@ -96,8 +98,7 @@ code {
 .slideshow-container {
   position: relative;
   background: #f1f1f1f1;
-  width: 100vw;
-  height: 80vh;
+  width: 100%;
 }
 
 /* Slides */
@@ -123,7 +124,7 @@ code {
     padding: 50px;
   }
   .rightSide {
-    width: 100%;
+    width: 100% !important;
     height: 50%;
   }
 }

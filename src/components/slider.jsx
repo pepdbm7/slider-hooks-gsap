@@ -55,12 +55,12 @@ const Slider = () => {
       ease: Back.easeInOut,
       delay: 0.4
     });
-    TweenMax.staggerFrom(
-      ".dot",
-      0,
-      { scale: 0.5, opacity: 0, delay: 1.3, ease: Back.easeOut },
-      0.1
-    );
+    // TweenMax.staggerFrom(
+    //   ".dot",
+    //   0,
+    //   { scale: 0.5, opacity: 0, delay: 1.3, ease: Back.easeOut },
+    //   0.1
+    // );
   };
 
   const handlePrevious = () => {
@@ -76,6 +76,9 @@ const Slider = () => {
     setIndex(i);
     animate();
   };
+
+  //activate effects when component is visible in screen:
+  // useIntersection({});
 
   return (
     <React.Fragment>
