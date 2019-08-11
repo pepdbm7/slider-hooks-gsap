@@ -23,7 +23,7 @@ code {
   background: #333;
 }
 
-/* header: */
+/* HEADER: */
 .header-container {
   height: 150vh;
   width: 100vw;
@@ -94,14 +94,13 @@ code {
   color: white;
 }
 
-/* Slideshow container */
+/* SLIDER */
 .slideshow-container {
   position: relative;
   background: #f1f1f1f1;
   width: 100%;
 }
 
-/* Slides */
 .slide {
   display: flex;
   height: 100%;
@@ -182,6 +181,7 @@ img {
   text-align: center;
   padding: 20px;
   background: #ddd;
+  margin-bottom: 100vh;
 }
 
 /* The dots/bullets/indicators */

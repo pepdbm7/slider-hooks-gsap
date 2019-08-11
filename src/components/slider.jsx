@@ -1,45 +1,13 @@
 import React, { useState, useEffect } from "react";
-import Kid from "../img/kid.jpg";
-import Rocks from "../img/rocks.jpg";
-import Dogs from "../img/dogs.jpg";
-import Sunset from "../img/sunset.jpg";
 import { TweenMax, Back } from "gsap";
+import slides from "../slides";
 
-import useIntersection from "./use_intersection_observer";
+import useIntersectionObserver from "./use_intersection_observer";
 
 const Slider = () => {
-  const [index, setIndex] = useState(1);
-
-  const slides = [
-    {
-      quote:
-        "I love you the more in that I believe you had liked me for my own sake and for nothing else",
-      imgUrl: Kid
-    },
-    {
-      quote:
-        "But man is not made for defeat. A man can be destroyed but not defeated.",
-      imgUrl: Rocks
-    },
-    {
-      quote: "I have not failed. I've just found 10,000 ways that won't work.",
-      imgUrl: Dogs
-    },
-    {
-      quote: "Be yourself; everyone else is already taken.",
-      imgUrl: Sunset
-    }
-  ];
-
+  let [index, setIndex] = useState(0);
+  const [ref, isVisible] = useIntersectionObserver({});
   const length = slides.length - 1;
-
-  useEffect(() => animate(), []);
-
-  const handleNext = () => {
-    console.log("next");
-    index === length ? setIndex(0) : setIndex(index + 1);
-    animate();
-  };
 
   const animate = () => {
     TweenMax.from("img", 0.5, {
@@ -55,35 +23,33 @@ const Slider = () => {
       ease: Back.easeInOut,
       delay: 0.4
     });
-    // TweenMax.staggerFrom(
-    //   ".dot",
-    //   0,
-    //   { scale: 0.5, opacity: 0, delay: 1.3, ease: Back.easeOut },
-    //   0.1
-    // );
-  };
-
-  const handlePrevious = () => {
-    console.log("previous");
-
-    index === 0 ? setIndex(length) : setIndex(index - 1);
-    animate();
-  };
-
-  const { quote, imgUrl } = slides[index];
-
-  const currentSlide = i => {
-    setIndex(i);
-    animate();
+    TweenMax.staggerFrom(
+      ".dot",
+      0,
+      { scale: 0.5, opacity: 0, delay: 1.3, ease: Back.easeOut },
+      0.1
+    );
   };
 
   //activate effects when component is visible in screen:
-  // useIntersection({});
+  if (isVisible) {
+    console.log(isVisible);
+    animate();
+  }
 
+  const handleNext = () =>
+    index === length ? setIndex(0) : setIndex(index + 1);
+
+  const handlePrevious = () =>
+    index === 0 ? setIndex(length) : setIndex(index - 1);
+
+  const currentSlide = i => setIndex(i);
+
+  const { quote, imgUrl } = slides[index];
   return (
     <React.Fragment>
       {/* Slideshow container */}
-      <div class="slideshow-container">
+      <div ref={ref} class="slideshow-container">
         {/* Full-width slides/quotes */}
         <div className="slide">
           <div className="leftSide">
